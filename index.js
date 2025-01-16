@@ -7,14 +7,7 @@ const methodOverride = require("method-override");
 require("dotenv").config();
 const favicon = require('serve-favicon');
 const cookieParser = require("cookie-parser");
-// middleware 
-app.use(session({
-  name: 'session',
-  keys: [process.env.SESSION_KEY],
-  maxAge: 24 * 60 * 60 * 1000,
-  httpOnly: true,
-  secure: process.env.NODE_ENV === 'production',
-}));
+
 // Initialize App
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -37,7 +30,13 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
 app.use(cookieParser());
 
 // Session middleware
-
+app.use(session({
+  name: 'session',
+  keys: [process.env.SESSION_KEY],
+  maxAge: 24 * 60 * 60 * 1000,
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production',
+}));
 
 // Routes
 const chatRoutes = require("./routes/chatRoutes");
