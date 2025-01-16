@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DropNRead</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <h1>Drop<span style="color: #6200ea;">N</span>Read</h1>
+        <div class="user-icon">
+            <a href="/profile">
+                <div class="icon-circle">
+                    <span>
+                        <%= userName[0].toUpperCase() %>
+                    </span>
+                </div>
+            </a>
+            <span class="user-name">
+                <%= userName.toUpperCase() %>
+            </span>
+        </div>
+
+    </header>
+    <main class="chat-container">
+        <% for (let chat of chats) { %>
+            <div class="chat-box">
+                <div class="chat-info">
+                    <p><strong>From:</strong>
+                        <%= chat.from.toUpperCase() %>
+                    </p>
+                    <p><strong>To:</strong>
+                        <%= chat.to.toUpperCase() %>
+                    </p>
+                </div>
+                <div class="chat-message">
+                    <div class="message-section">
+                        <h3>Message:</h3>
+                        <p>
+                            <%= chat.message %>
+                        </p>
+                    </div>
+                    <div class="two-btn">
+                        <form action="/chats/<%=chat._id%>/edit" method="get">
+                            <button class="button-style">Edit</button>
+                        </form>
+                        <form method="POST" action="/chats/<%= chat._id %>?_method=DELETE">
+                            <button class="button-style del-btn">Delete</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- 7.Date -->
+                <div class="Created-time">
+                    <p>Created At:<br>
+                        <%=chat.created_at.toString().split(" ")[4]%></p>
+                    <p><br><%=chat.created_at.toString().split(" ").slice(0,4).join(" ")%></p>
+                </div>
+            </div>
+        <% } %>
+    </main>
+                            <footer class=" footer">
+                            <div class="footer-btn">
+                                <a href="/logout"><button class="button-style">Logout</button></a>
+                                <a href="/chats/new"><button class="button-style">New Chat</button></a>
+                            </div>
+                            <p>&copy; 2025 message drop | Designed with ❤️ by Satish Pandey.</p>
+                            </footer>
+</body>
+
+</html>

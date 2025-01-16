@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DropNRead Profile</title>
+    <link rel="stylesheet" href="/profile.css">
+</head>
+
+<body>
+    <header>
+        <h1>Drop<span style="color: #6200ea;">N</span>Read Profile</h1>
+        <nav>
+            <a href="/chats">Chats</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+
+    <main class="profile-container">
+        <h2>Profile</h2>
+        <div class="profile-info">
+            <p><strong>Name:</strong>
+                <%= currentUser.name %>
+            </p>
+            <p><strong>Username:</strong>
+                <%= currentUser.username %>
+            </p>
+            <p><strong>Email:</strong>
+                <%= currentUser.email %>
+            </p>
+        </div>
+        <div class="btn-container">
+            <a href="/reset-password" class="reset-password-btn">Change Password</a>
+            <a href="/deleteUser" class="reset-password-btn del-btn">Delete Account</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Message Drop | Designed with ❤️ by Satish Pandey.</p>
+    </footer>
+</body>
+
+</html>

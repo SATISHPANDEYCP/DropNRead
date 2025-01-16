@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DropNRead - Login</title>
+    <link rel="stylesheet" href="/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script> <!-- Include the Typed.js library -->
+</head>
+
+<body>
+
+    <header class="header">
+        <h1>Drop<span style="color: #6200ea;">N</span>Read</h1>
+    </header>
+    <main class="form-container">
+        <div class="intro">
+            <h3>Welcome to Drop<span style="color: #333;">N</span>Read!</h3>
+            <p id="typed-text"></p>
+        </div>
+        <div class="login-form-container">
+            <h3>Login</h3>
+            <form action="/login" method="POST" class="chat-form">
+                <input type="email" name="email" placeholder="Email (It is Case Senstive)" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+                <p>New user? <a href="/register">register here</a></p>
+                <p><a href="/reset-password">Forgot password?</a></p>
+            </form>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2025 Message Drop | Designed with ❤️ by Satish Pandey.</p>
+    </footer>
+    <script>
+        var options = {
+            strings: [
+                "Start meaningful conversations today with DropNRead! Sign up, log in, and leave personalized messages for friends, family, or colleagues. Simply enter their Name and drop a message—it’s secure and private!",
+                "DropNRead makes communication effortless and confidential. Whether sharing heartfelt thoughts or professional updates, only the intended recipient can view your messages. Your privacy is our top priority!",
+                "With DropNRead, sending and receiving messages is as easy as logging in and typing a Name. Drop messages anytime, anywhere, and manage them effortlessly—edit or delete messages as needed.",
+                "Enjoy seamless and secure messaging with DropNRead! Our platform ensures your messages are private and reach the right person every time. Join now to experience a simple and engaging way to connect!"
+            ],
+            typeSpeed: 50,  // Speed of typing
+            backSpeed: 30,  // Speed of deleting text
+            backDelay: 1000,  // Delay before deleting text
+            loop: true,  // Keep typing and deleting indefinitely
+        };
+
+        var typed = new Typed("#typed-text", options);  // Apply typing effect to the paragraph with id="typed-text"
+    </script>
+
+</body>
+
+</html>

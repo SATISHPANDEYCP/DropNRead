@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Chat</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <header class="header">
+        <h1>Drop<span style="color: #6200ea;">N</span>Read</h1>
+    </header>
+    <main class="form-container">
+        <h3 style="color: #6200ea; font-size: 1.5rem;">Write a New Message</h3>
+        <form action="/chats" method="POST" class="chat-form">
+            <input type="text" placeholder="Who are you?" name="from" value="<%= userName.toUpperCase() %>" required
+                readonly>
+            <input type="text" placeholder="Add Receiver" name="to" required>
+            <textarea name="message" placeholder="Write your message here..." rows="5" required></textarea>
+            <button type="submit" class="button-style">Create Chat</button>
+        </form>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2025 Message Drop | Designed with ❤️ by Satish Pandey.</p>
+    </footer>
+</body>
+
+</html>

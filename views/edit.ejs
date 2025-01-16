@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit your Chat</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <header class="header">
+        <h1>Drop<span style="color: #6200ea;">N</span>Read</h1>
+        <h1>Edit Chat for User Id: <%= chat._id.toString().slice(20) %></h1>
+
+    </header>
+    <div class="form-container">
+        <p style="color: #6200ea; font-size: 1.5rem; font-weight: bold;">This chat is from <b>
+                <%= chat.from.toUpperCase() %>
+            </b> to <b>
+                <%= chat.to.toUpperCase() %>
+            </b>
+        </p>
+        <form class="chat-form" action="/chats/<%= chat._id %>?_method=PUT" method="POST">
+            <textarea name="newMsg" required><%= chat.message %></textarea>
+            <button class="button-style">Save Changes</button>
+        </form>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2025 Message Drop | Designed with ❤️ by Satish Pandey.</p>
+    </footer>
+</body>
+
+</html>

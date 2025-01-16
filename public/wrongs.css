@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #121212;
+  color: #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+  padding: 30px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 1s ease-in-out;
+}
+
+.emoji {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  background-color: #6200ea;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.eye {
+  position: absolute;
+  top: 40%;
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border-radius: 50%;
+  transition: 1s;
+}
+
+.eye::after {
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.eye.left {
+  left: 35%;
+}
+
+.eye.right {
+  right: 35%;
+}
+
+@keyframes blink {
+
+  0%,
+  95% {
+    transform: scaleY(1);
+  }
+
+  96%,
+  100% {
+    transform: scaleY(0.1);
+  }
+}
+
+.eye {
+  animation: blink 3s infinite;
+}
+
+.mouth {
+  position: absolute;
+  bottom: 25%;
+  left: 50%;
+  width: 60px;
+  height: 10px;
+  background-color: black;
+  border-radius: 20px;
+  transform: translateX(-50%);
+}
+
+.message {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #6200ea;
+}
+
+.sub-message {
+  font-size: 18px;
+  color: #a1a1a1;
+  margin-bottom: 20px;
+}
+
+.go-back-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #6200ea;
+  color: #f1f1f1;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.go-back-btn:hover {
+  background-color: #3700b3;
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  .message {
+    font-size: 20px;
+  }
+
+  .sub-message {
+    font-size: 16px;
+  }
+
+  .go-back-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
