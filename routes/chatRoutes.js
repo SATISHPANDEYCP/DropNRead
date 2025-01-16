@@ -11,7 +11,7 @@ function isAuthenticated(req, res, next) {
 }
 
 // Index Route: Display all chats
-router.get("/", isAuthenticated, async (req, res) => {
+router.get("/chats", isAuthenticated, async (req, res) => {
   try {
     const userName = req.session.user.name;
     // Case insensitive comparison
