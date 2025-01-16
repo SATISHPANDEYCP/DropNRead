@@ -15,7 +15,7 @@ const URI = process.env.MONGO_URI;
 
 // Database Connection
 mongoose
-  .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(URI)
   .then(() => console.log("Database connected"))
   .catch((err) => console.error("DB connection error:", err));
 
@@ -29,22 +29,14 @@ app.set("views", path.join(__dirname, "views"));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
 app.use(cookieParser());
 
-// Session Middleware
+// Session middleware
 app.use(session({
   name: 'session',
-  keys: [process.env.SESSION_KEY || 'defaultSecretKey'],
-  maxAge: 24 * 60 * 60 * 1000, // 24 hours
+  keys: [process.env.SESSION_KEY],
+  maxAge: 24 * 60 * 60 * 1000,
   httpOnly: true,
-  secure: process.env.NODE_ENV === 'production', // Secure cookies in production
-  secure: false,
-  sameSite: 'lax', // Adjust if needed
+  secure:false
 }));
-
-// Log session for debugging (optional during development)
-app.use((req, res, next) => {
-  console.log("Session data:", req.session);
-  next();
-});
 
 // Routes
 const chatRoutes = require("./routes/chatRoutes");
@@ -54,7 +46,7 @@ app.use("/", authRoutes); // Handle authentication-related routes
 
 // Redirect to login or chats based on session
 app.get("/", (req, res) => {
-  if (req.session && req.session.user) {
+  if (req.session.user) {
     return res.redirect("/chats");
   }
   res.render("login");
@@ -62,8 +54,8 @@ app.get("/", (req, res) => {
 
 // Error Handler
 app.use((err, req, res, next) => {
-  console.error("Error handler middleware triggered:", err.stack);
-  res.status(500).render("error.ejs", { message: "Something went wrong! Please try again later." });
+  console.error(err.stack);
+  res.status(500).send("Something went wrong!");
 });
 
 // Start Server
