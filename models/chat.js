@@ -26,7 +26,7 @@ const chatSchema = new mongoose.Schema({
     created_at: {
         type: Date,
         required: true,
-        default: Date.now
+        default: () => moment().tz('Asia/Kolkata').toDate()
     }
 });
 
