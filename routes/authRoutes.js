@@ -209,9 +209,10 @@ router.delete("/deleteUser", isAuthenticated, async (req, res) => {
                 }
             });
         }
-        console.log("All Chat is deleted of User.");
         await Chat.deleteMany({ username: username, email: email });
+        console.log("All Chat is deleted of User.");
         await User.deleteOne({ _id: user._id });
+        console.log("user Account deleted.");
         res.render("popup.ejs", {
             message: "Profile deleted successfully. You will be redirected to the Login page shortly.",
             redirectUrl: "/login"
