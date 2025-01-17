@@ -9,11 +9,19 @@ const chatSchema = new mongoose.Schema({
     },
     to: {
         type: String,
-        required: false
+        required: true
+    },
+    username:{
+        type: String,
+        required: true
+    },
+    email:{
+        type: String,
+        required: true
     },
     message: {
         type: String,
-        required: false
+        required: true
     },
     created_at: {
         type: Date,

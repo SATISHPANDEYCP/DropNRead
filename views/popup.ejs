@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wrong</title>
+  <title>Notification</title>
   <link rel="stylesheet" href="/wrongs.css">
+  <script>
+    // Automatically close popup after 2 seconds and redirect
+    window.onload = function () {
+      setTimeout(() => {
+        window.location.href = "<%= redirectUrl %>";
+      }, 2000); // 2 seconds
+    };
+  </script>
 </head>
 
 <body>
@@ -16,12 +23,8 @@
       <div class="mouth"></div>
     </div>
     <div class="message">
-      <%=msg.m1%>
+      <%= message %>
     </div>
-    <div class="sub-message"> 
-      <%=msg.m2%>
-    </div>
-    <button class="go-back-btn" onclick="history.back()">Go Back</button>
   </div>
 </body>
 

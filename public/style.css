@@ -309,6 +309,14 @@ textarea::-webkit-scrollbar {
     text-decoration: underline;
 }
 
+.password-requirements {
+    margin: 0;
+    padding: 0; 
+    font-size: 12px;
+    color: #888;
+    text-align: left; 
+}
+
 /* For tablets (portrait and landscape) */
 @media (max-width: 768px) {
     .header h1 {
