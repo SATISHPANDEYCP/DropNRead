@@ -110,7 +110,7 @@ router.post(
             const hashedPassword = await bcrypt.hash(password, 10);
             const newUser = new User({ name, username, email, password: hashedPassword });
             await newUser.save();
-            console.log("Profile Cerated Redirected on login page.");
+            console.log("Profile Cerated Redirected on chats page.");
             const user = await User.findOne({ email: { $regex: new RegExp(`^${email}$`, 'i') } });
             req.session.user = { name: user.name, username: user.username, email: user.email };
             res.redirect("/chats");
@@ -212,7 +212,10 @@ router.delete("/deleteUser", isAuthenticated, async (req, res) => {
         console.log("All Chat is deleted of User.");
         await Chat.deleteMany({ username: username, email: email });
         await User.deleteOne({ _id: user._id });
-        res.redirect("/login");
+        res.render("popup.ejs", {
+            message: "Profile deleted successfully. You will be redirected to the Login page shortly.",
+            redirectUrl: "/login"
+          });
     } catch (err) {
         console.error("Error deleting user:", err);
         res.status(500).render("wrongSingle.ejs", { msgs: "Oops! Internal Server Error." });
