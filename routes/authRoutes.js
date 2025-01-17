@@ -107,12 +107,13 @@ router.post(
                     },
                 });
             }
-
             const hashedPassword = await bcrypt.hash(password, 10);
             const newUser = new User({ name, username, email, password: hashedPassword });
             await newUser.save();
             console.log("Profile Cerated Redirected on login page.");
-            res.redirect("/login");
+            const user = await User.findOne({ email: { $regex: new RegExp(`^${email}$`, 'i') } });
+            req.session.user = { name: user.name, username: user.username, email: user.email };
+            res.redirect("/chats");
         } catch (err) {
             console.error("Error during registration:", err);
             res.status(500).render("wrongSingle.ejs", { msgs: "Oops! Internal Server Error." });
