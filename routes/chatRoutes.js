@@ -32,9 +32,9 @@ router.get("/", isAuthenticated, async (req, res) => {
     }).sort({ created_at: -1 }); 
 
      // Convert `created_at` to Asia/Kolkata time (UTC+5:30)
-     chats.forEach(chat => {
-      chat.created_at = moment(chat.created_at).tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss');
-    });
+    //  chats.forEach(chat => {
+    //   chat.created_at = moment(chat.created_at).tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss');
+    // });
 
     console.log("We render chat Page with User Name.");
     res.render("index", { chats, userName });
