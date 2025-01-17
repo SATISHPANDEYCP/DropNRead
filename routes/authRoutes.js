@@ -76,13 +76,12 @@ router.post(
             console.log("Registration is terminated with error:", errors.array().map((error) => error.msg).join(" "));
             return res.status(400).render("wrong.ejs", {
                 msg: {
-                    m1: "Validation failed.Please check the following issues:",
-                    m2: errors.array().map((error) => error.msg).join(" "),
+                    m1: "Validation failed.",
+                    m2: "Please ensure all fields are correctly filled out."
 
                 },
             });
         }
-
         let { name, email, username, password } = req.body;
         name = name.trim();
         email = email.trim();
@@ -138,10 +137,10 @@ router.post("/reset-password", [
     if (!errors.isEmpty()) {
         return res.render("wrong.ejs", {
             msg: {
-                m1: "err!, Please address the following issues:",
-                m2: errors.array().map(error => `<strong>${error.param}</strong>: ${error.msg}`).join("<br>"),
+                m1: "Validation failed.",
+                m2: "Please ensure all fields are correctly filled out."
             }
-        });        
+        });
     }
 
     let { username, email, password } = req.body;
