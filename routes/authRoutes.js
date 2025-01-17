@@ -162,7 +162,6 @@ router.post("/reset-password", [
                 }
             });
         }
-
         const isSamePassword = await bcrypt.compare(password, user.password);
         if (isSamePassword) {
             return res.render("wrong.ejs", {
@@ -172,7 +171,6 @@ router.post("/reset-password", [
                 }
             });
         }
-
         user.password = await bcrypt.hash(password, 10);
         await user.save();
         console.log(`Password reset successful for user: ${username}`);
