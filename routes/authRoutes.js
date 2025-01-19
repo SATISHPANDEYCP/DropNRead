@@ -118,7 +118,7 @@ router.post(
                 },
             });
         }
-        let { name, email, username, password } = req.body;
+        let { name, email, username, password,otp } = req.body;
         name = name.trim();
         email = email.trim();
         username = username.trim();
