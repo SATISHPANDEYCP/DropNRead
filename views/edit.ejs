@@ -15,14 +15,17 @@
 
     </header>
     <div class="form-container">
-        <p style="color: #6200ea; font-size: 1.5rem; font-weight: bold;">This chat is from <b>
+        <p style="color: #6200ea; font-size: 1.5rem; font-weight: bold;">This Edit is Page <b>
                 <%= chat.from.toUpperCase() %>
             </b> to <b>
                 <%= chat.to.toUpperCase() %>
             </b>
         </p>
         <form class="chat-form" action="/chats/<%= chat._id %>?_method=PUT" method="POST">
-            <textarea name="newMsg" required><%= chat.message %></textarea>
+            <textarea name="newMsg" maxlength="1000" required><%= chat.message %></textarea>
+            <p class="password-requirements">
+                Maximum character limit: 1,000.
+            </p>            
             <button class="button-style">Save Changes</button>
         </form>
     </div>

@@ -5,28 +5,29 @@ const mongoose = require("mongoose");
 const chatSchema = new mongoose.Schema({
     from: {
         type: String,
-        required: true
+        required: [true, 'From is required.']
     },
     to: {
         type: String,
-        required: true
+        required: [true, 'To is required.']
     },
     username:{
         type: String,
-        required: true
+        required: [true, 'Username is required.']
     },
     email:{
         type: String,
-        required: true
+        required: [true, 'Email is required.']
     },
     message: {
         type: String,
-        required: true
+        required: [true, 'Message is required.'],
+        maxLength: [1000, 'Message cannot exceed 1,000 characters.']
     },
     created_at: {
         type: Date,
         required: true,
-        default: new Date()
+        default: Date.now()
     }
 });
 

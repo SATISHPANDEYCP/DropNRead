@@ -18,7 +18,10 @@
             <input type="text" placeholder="Who are you?" name="from" value="<%= userName.toUpperCase() %>" required
                 readonly>
             <input type="text" placeholder="Add Receiver" name="to" required>
-            <textarea name="message" placeholder="Write your message here..." rows="5" required></textarea>
+            <textarea name="message" placeholder="Write your message here..." rows="5" maxlength="1000" required></textarea>
+            <p class="password-requirements">
+                Maximum character limit: 1,000.
+            </p>            
             <button type="submit" class="button-style">Create Chat</button>
         </form>
     </main>

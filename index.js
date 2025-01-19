@@ -7,6 +7,7 @@ const methodOverride = require("method-override");
 require("dotenv").config();
 const favicon = require('serve-favicon');
 const cookieParser = require("cookie-parser");
+const nodemailer = require("nodemailer");
 
 // Initialize App
 const app = express();

@@ -20,6 +20,18 @@
             <input type="email" name="email" placeholder="Enter Email" required>
             <input type="password" name="password" placeholder="Enter a password(Case Senstive)" required>
             <p class="password-requirements">Password must include 1 digit, 1 letter, 1 symbol, and be at least 5 characters long.</p>
+
+
+
+            <!-- OTP Section -->
+            <div class="otp-section">
+                <button type="button" id="requestOtp" class="button-style">Request OTP</button>
+                <div id="otpField" style="display:none;">
+                    <input type="text" name="otp" placeholder="Enter the OTP" required>
+                </div>
+            </div>
+
+
             <button type="submit" class="button-style">Create Account</button>
         </form>
         <div class="options-form">
@@ -29,6 +41,65 @@
     <footer class="footer">
         <p>&copy; 2025 Message Drop | Designed with ❤️ by Satish Pandey.</p>
     </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        const requestOtpButton = document.getElementById("requestOtp");
+        const otpField = document.getElementById("otpField");
+
+        // Handle OTP request
+        requestOtpButton.addEventListener("click", async () => {
+            const emailField = document.querySelector('input[name="email"]');
+            const email = emailField.value.trim();
+
+            if (!email) {
+                alert("Please enter your email address to request OTP.");
+                return;
+            }
+
+            try {
+                const response = await fetch("/send-otp-reg", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.msg || "OTP sent successfully. Please check your email.");
+                    otpField.style.display = "block";
+                } else {
+                    alert(result.msg || "Failed to send OTP. Please try again.");
+                }
+            } catch (error) {
+                console.error("Error requesting OTP:", error);
+                alert("An error occurred. Please try again later.");
+            }
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
 </body>
 
 </html>

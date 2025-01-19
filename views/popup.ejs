@@ -10,7 +10,7 @@
     window.onload = function () {
       setTimeout(() => {
         window.location.href = "<%= redirectUrl %>";
-      }, 2000); // 2 seconds
+      }, 3000); // 3 seconds
     };
   </script>
 </head>
@@ -23,7 +23,10 @@
       <div class="mouth"></div>
     </div>
     <div class="message">
-      <%= message %>
+      <%= message.m1 %>
+    </div>
+    <div class="sub-message"> 
+      <%=message.m2%>
     </div>
   </div>
 </body>
