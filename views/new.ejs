@@ -17,11 +17,25 @@
         <form action="/chats" method="POST" class="chat-form">
             <input type="text" placeholder="Who are you?" name="from" value="<%= userName.toUpperCase() %>" required
                 readonly>
+            <label for="dropdownValue" class="dropdownValueLabel">Send Message By:</label>
+            <select name="dropdownValue" id="dropdownValue" required>
+                <option value="Name">Name</option>
+                <option value="Email">Email</option>
+                <option value="Username">Username</option>
+            </select>
+
+            <p class="password-requirements">For full privacy, choose Username or Email. Messages sent using these will
+                only be
+                visible to the matching recipient, as both Username and Email are unique on this platform. Note:
+                Name-based messages
+                might match multiple users.</p>
+
             <input type="text" placeholder="Add Receiver" name="to" required>
-            <textarea name="message" placeholder="Write your message here..." rows="5" maxlength="1000" required></textarea>
+            <textarea name="message" placeholder="Write your message here..." rows="5" maxlength="1000"
+                required></textarea>
             <p class="password-requirements">
                 Maximum character limit: 1,000.
-            </p>            
+            </p>
             <button type="submit" class="button-style">Create Chat</button>
         </form>
     </main>

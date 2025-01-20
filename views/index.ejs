@@ -2,15 +2,15 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DropNRead</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
     <header class="header">
-        <h1>Drop<span style="color: #6200ea;">N</span>Read</h1>
+        <h1>Drop<span style="color: #6200ea">N</span>Read</h1>
         <div class="user-icon">
             <a href="/profile">
                 <div class="icon-circle">
@@ -23,17 +23,19 @@
                 <%= userName.toUpperCase() %>
             </span>
         </div>
-
     </header>
     <main class="chat-container">
         <% for (let chat of chats) { %>
             <div class="chat-box">
                 <div class="chat-info">
-                    <p><strong>From:</strong>
-                        <%= chat.from.toUpperCase()%> (Username:<%=chat.username%>)
+                    <p>
+                        <strong>From:</strong>
+                        <%= chat.from.toUpperCase()%>
+                            (Username:<%=chat.username%>)
                     </p>
-                    <p><strong>To:</strong>
-                        <%= chat.to.toUpperCase() %>
+                    <p>
+                        <strong>To:</strong>
+                        <%= chat.to.toUpperCase() %> (<%= chat.dropdownValue%>)
                     </p>
                 </div>
                 <div class="chat-message">
@@ -54,14 +56,18 @@
                 </div>
                 <!-- 7.Date -->
                 <div class="Created-time">
-                    <p>Created At:<br>
-                        <%=chat.created_at.toString().split(" ")[4]%></p>
-                    <p><br><%=chat.created_at.toString().split(" ").slice(0,4).join(" ")%></p>
+                    <p>
+                        Created At:<br />
+                        <%=chat.created_at.toString().split(" ")[4]%>
+                    </p>
+                    <p>
+                        <br /><%=chat.created_at.toString().split(" ").slice(0,4).join(" ")%>
+                    </p>
                 </div>
             </div>
-        <% } %>
-    </main>
-                            <footer class=" footer">
+            <% } %>
+        </main>
+        <footer class=" footer">
                             <div class="footer-btn">
                                 <a href="/logout"><button class="button-style">Logout</button></a>
                                 <a href="/chats/new"><button class="button-style">New Chat</button></a>

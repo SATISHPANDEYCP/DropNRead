@@ -342,8 +342,6 @@ router.post("/send-otp", async (req, res) => {
         }
         const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
         const otpExpiry = new Date(Date.now() + 5 * 60 * 1000);
-        console.log('Current Time:', new Date());
-        console.log('OTP Expiry:', otpExpiry);
         // Hash the OTP before saving
         const hashedOtp = await bcrypt.hash(otpCode, 10);
         otpStoreCurrent[email] = { hashedOtp, otpExpiry };

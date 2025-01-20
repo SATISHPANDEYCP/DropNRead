@@ -36,7 +36,7 @@ app.use(session({
   keys: [process.env.SESSION_KEY],
   maxAge: 24 * 60 * 60 * 1000,
   httpOnly: true,
-  secure:false
+  secure: false
 }));
 
 // Routes

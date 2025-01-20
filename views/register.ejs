@@ -30,9 +30,11 @@
                     <input type="text" name="otp" placeholder="Enter the OTP" required>
                 </div>
             </div>
+            <p id="timer" class="password-requirements" style="color: #6200ea; font-size: 1rem; display:none;">Time
+                remaining: <span id="countdown"></span></p>
 
+            <button type="submit" class="button-style" id="submitButton" disabled>Create Account</button>
 
-            <button type="submit" class="button-style">Create Account</button>
         </form>
         <div class="options-form">
             <p>Already have an account? <a href="/login">Login here</a></p>
@@ -43,21 +45,17 @@
     </footer>
 
 
-
-
-
-
-
-
-
-
-
-
-
     <script>
         const requestOtpButton = document.getElementById("requestOtp");
         const otpField = document.getElementById("otpField");
+        const timerElement = document.getElementById("timer");
+        const countdownElement = document.getElementById("countdown");
 
+        let countdownInterval;
+        function validatePassword(password) {
+            const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,}$/;
+            return passwordRegex.test(password);
+        }
         // Handle OTP request
         requestOtpButton.addEventListener("click", async () => {
             const emailField = document.querySelector('input[name="email"]');
@@ -65,6 +63,22 @@
 
             if (!email) {
                 alert("Please enter your email address to request OTP.");
+                return;
+            }
+
+            // We Check if all required fields are filled
+            const nameField = document.querySelector('input[name="name"]');
+            const usernameField = document.querySelector('input[name="username"]');
+            const passwordField = document.querySelector('input[name="password"]');
+
+            if (!nameField.value.trim() || !usernameField.value.trim() || !passwordField.value.trim()) {
+                alert("Please fill in all the required fields before requesting OTP.");
+                return;
+            }
+
+            // Validate the password
+            if (!validatePassword(passwordField.value.trim())) {
+                alert("Password must include 1 digit, 1 letter, 1 symbol, and be at least 5 characters long.");
                 return;
             }
 
@@ -81,6 +95,23 @@
                 if (response.ok) {
                     alert(result.msg || "OTP sent successfully. Please check your email.");
                     otpField.style.display = "block";
+
+                    // Disable all inputs except OTP field
+                    const formInputs = document.querySelectorAll("form.chat-form input");
+                    formInputs.forEach(input => {
+                        if (input.name !== "otp") {
+                            input.readOnly = true;
+                        }
+                    });
+
+                    // Disable the Request OTP button
+                    requestOtpButton.disabled = true;
+                    // Enable the submit button after OTP is sent
+                    const submitButton = document.getElementById("submitButton");
+                    submitButton.disabled = false;
+
+                    // Start the timer
+                    startTimer(300); // 5 minutes (300 seconds)
                 } else {
                     alert(result.msg || "Failed to send OTP. Please try again.");
                 }
@@ -89,17 +120,40 @@
                 alert("An error occurred. Please try again later.");
             }
         });
+
+        // Timer Function
+        function startTimer(duration) {
+            let remainingTime = duration;
+
+            // Show the timer
+            timerElement.style.display = "block";
+
+            countdownInterval = setInterval(() => {
+                const minutes = Math.floor(remainingTime / 60);
+                const seconds = remainingTime % 60;
+
+                // Update the timer display
+                countdownElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+                remainingTime--;
+
+                if (remainingTime < 0) {
+                    clearInterval(countdownInterval);
+
+                    // Enable the Request OTP button after the timer ends
+                    requestOtpButton.disabled = false;
+                    timerElement.style.display = "none";
+
+                    // Allow editing of form inputs again
+                    const formInputs = document.querySelectorAll("form.chat-form input");
+                    formInputs.forEach(input => {
+                        input.readOnly = false;
+                    });
+                }
+            }, 1000);
+        }
+
     </script>
-
-
-
-
-
-
-
-
-
-
 </body>
 
 </html>

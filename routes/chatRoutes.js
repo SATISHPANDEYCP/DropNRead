@@ -40,17 +40,37 @@ router.get("/", isAuthenticated, async (req, res) => {
       });
     }
     const userName = req.session.user.name.trim();
+    const userEmail = req.session.user.email.trim();
+    const userNameTo = req.session.user.username.trim();
     const userUsername = req.session.user.username.trim();
     // Check if userName or userUsername exists and is valid
     if (!userName || userName === "" || !userUsername || userUsername === "") {
       return res.status(400).render("wrongSingle.ejs", { msgs: "User information is missing or invalid." });
     }
-    // Fetch chats where `to` matches userName or `username` matches userUsername
+    // Fetch messages that match `to` based on `dropdownValue`
     const chats = await Chat.find({
       $or: [
-        { to: { $regex: `^${userName}$`, $options: "i" } }, // Case-insensitive match for `to`
-        { username: { $regex: `^${userUsername}$`, $options: "i" } } // Case-insensitive match for `username`
-      ]
+        {
+          $and: [
+            { dropdownValue: "Name" },
+            { to: { $regex: `^${userName}$`, $options: "i" } },
+          ],
+        },
+        {
+          $and: [
+            { dropdownValue: "Email" },
+            { to: { $regex: `^${userEmail}$`, $options: "i" } },
+          ],
+        },
+        {
+          $and: [
+            { dropdownValue: "Username" },
+            { to: { $regex: `^${userUsername}$`, $options: "i" } },
+          ],
+        },
+        // Include messages where the username matches
+        { username: { $regex: `^${userUsername}$`, $options: "i" } },
+      ],
     }).sort({ created_at: -1 });
     // Convert `created_at` to Asia/Kolkata time (UTC+5:30)
     chats.forEach(chat => {
@@ -113,7 +133,7 @@ router.get("/new", isAuthenticated, async (req, res) => {
 
 // Create Chat
 router.post("/", isAuthenticated, async (req, res) => {
-  let { to, message } = req.body;
+  let { to, message, dropdownValue } = req.body;
   const from = req.session.user.name;
   const username = req.session.user.username;
   const email = req.session.user.email;
@@ -143,6 +163,7 @@ router.post("/", isAuthenticated, async (req, res) => {
       from,
       to,
       username,
+      dropdownValue,
       email,
       message,
       created_at: new Date()

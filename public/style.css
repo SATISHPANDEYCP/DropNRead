@@ -322,6 +322,30 @@ textarea::-webkit-scrollbar {
 #otpField{
     padding-left: 5px;
 }
+
+
+    #dropdownValue {
+    background-color: #333;
+    color: #f1f1f1;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    }
+
+    #dropdownValue:focus {
+        border-color: #fff;
+    }
+
+    #dropdownValue option {
+        font-size: 1rem;
+    }
+    .dropdownValueLabel{
+        display: inline-block;
+         vertical-align:bottom; 
+       text-align: left;
+    }
+
+
 /* For tablets (portrait and landscape) */
 @media (max-width: 768px) {
     .header h1 {

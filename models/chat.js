@@ -11,11 +11,16 @@ const chatSchema = new mongoose.Schema({
         type: String,
         required: [true, 'To is required.']
     },
-    username:{
+    username: {
         type: String,
         required: [true, 'Username is required.']
     },
-    email:{
+    dropdownValue: {
+        type: String,
+        required: [true, 'Dropdown value is required.'],
+        enum: ['Name', 'Email', 'Username'], 
+    },
+    email: {
         type: String,
         required: [true, 'Email is required.']
     },
