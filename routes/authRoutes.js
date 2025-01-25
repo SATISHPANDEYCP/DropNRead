@@ -43,7 +43,7 @@ router.post("/login", async (req, res) => {
                 m1: "Welcome to DropNRead!",
                 m2: "A platform where you can leave a message for someone special by their name."
             },
-            redirectUrl: "/chats"
+            redirectUrl: "/chats/dashboard"
         });
     } catch (err) {
         console.error("Error during login:", err);
@@ -174,7 +174,7 @@ router.post(
                     m1: "Welcome to DropNRead!",
                     m2: "A platform where you can leave a message for someone special by their name."
                 },
-                redirectUrl: "/chats"
+                redirectUrl: "/chats/dashboard"
             });
         } catch (err) {
             console.error("Error during registration:", err);
@@ -321,7 +321,7 @@ router.post("/reset-password", [
                 m1: "Password reset successful",
                 m2: "You will be redirected to the Chats shortly."
             },
-            redirectUrl: "/chats"
+            redirectUrl: "/chats/dashboard"
         });
     } catch (err) {
         console.error("Error resetting password:", err);

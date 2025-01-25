@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #121212;
+    /* background-color: #121212; */
     color: #f1f1f1;
     display: flex;
     flex-direction: column;
@@ -13,21 +13,28 @@ body {
 }
 
 .header {
-    background-color: #1f1f1f;
+    display: flex;
+    background-color: rgba(22, 22, 22, 0.555);
     color: #333;
-    padding: 20px;
+    justify-content: space-between;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
     position: sticky;
     top: 0;
     z-index: 1000;
     width: 100%;
     margin-bottom: 40px;
-    border-bottom: 2px solid #3700b3;
 }
 
 .header h1 {
-    margin: 0;
+    margin-right: 15px;
+}
+
+.header img {
+    height: 40px;
+    margin-left: 10px;
+    border-radius: 10px;
 }
 
 .form-container {
@@ -41,10 +48,10 @@ body {
 }
 
 .intro {
-    background-color: #1e1e1e;
+    background-color: rgba(22, 22, 22, 0.555);
     border-radius: 10px;
     padding: 40px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -53,10 +60,14 @@ body {
     width: 100%;
     max-width: 600px;
     margin: 10px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s;
 }
-
+.intro:hover {
+    transform: scale(1.01);
+    box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.6);
+}
 .intro h3 {
-    color: #6200ea;
+    color: #FF4500;
     font-size: 28px;
     margin-bottom: 15px;
 }
@@ -67,13 +78,14 @@ body {
     white-space: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
+
 }
 
 .login-form-container {
-    background-color: #1e1e1e;
+    background-color: rgba(22, 22, 22, 0.555);
     border-radius: 10px;
     padding: 40px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -82,10 +94,14 @@ body {
     width: 100%;
     max-width: 600px;
     margin: 10px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s;
 }
-
+.login-form-container:hover {
+    transform: scale(1.01);
+    box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.6);
+}
 .login-form-container h3 {
-    color: #6200ea;
+    color: #FF4500;
     font-size: 28px;
     margin-bottom: 20px;
 }
@@ -112,7 +128,7 @@ body {
 }
 
 .chat-form button {
-    background-color: #6200ea;
+    background-color: #FF4500;
     color: #fff;
     padding: 12px;
     border: none;
@@ -124,9 +140,9 @@ body {
 }
 
 .chat-form button:hover {
-    background-color: #3700b3;
+    background-color: #FF7300;
     transform: scale(1.02);
-
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6);
 }
 
 .chat-form p {
@@ -135,14 +151,13 @@ body {
 }
 
 .footer {
-    background-color: #1f1f1f;
+    background-color: rgba(22, 22, 22, 0.555);
     text-align: center;
     color: #a1a1a1;
     padding: 20px;
     margin-top: 40px;
     width: 100%;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
-    border-top: 2px solid #3700b3;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.6);
 }
 
 .footer p {
@@ -151,7 +166,7 @@ body {
 }
 
 .footer a {
-    color: #6200ea;
+    color: #FF4500;
     text-decoration: none;
     font-weight: bold;
 }
@@ -161,7 +176,7 @@ body {
 }
 
 a {
-    color: #6200ea;
+    color: #FF4500;
     text-decoration: none;
     font-weight: bold;
 }
@@ -178,10 +193,12 @@ a:hover {
         gap: 20px;
         align-items: center;
     }
-    .intro{
+
+    .intro {
         width: 80%;
     }
-    .login-form-container{
+
+    .login-form-container {
         width: 80%;
     }
 }
@@ -192,19 +209,23 @@ a:hover {
     .chat-form textarea {
         font-size: 14px;
     }
+
     .form-container {
         flex-direction: column;
         gap: 20px;
         align-items: center;
     }
-    .intro{
+
+    .intro {
         width: 80%;
         padding: 10px;
     }
-    .login-form-container{
+
+    .login-form-container {
         width: 80%;
         padding: 10px;
     }
+
     .chat-form button {
         font-size: 15px;
     }

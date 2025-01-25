@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Chat</title>
     <link rel="stylesheet" href="/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
 </head>
 
 <body>
     <header class="header">
-        <h1>Drop<span style="color: #6200ea;">N</span>Read</h1>
+        <h1>Drop<span style="color: #FF4500;">N</span>Read</h1>
     </header>
     <main class="form-container">
-        <h3 style="color: #6200ea; font-size: 1.5rem;">Write a New Message</h3>
+        <h3 style="color: #FF4500; font-size: 1.5rem;">Write a New Message</h3>
         <form action="/chats" method="POST" class="chat-form">
             <input type="text" placeholder="Who are you?" name="from" value="<%= userName.toUpperCase() %>" required
                 readonly>
@@ -36,12 +38,24 @@
             <p class="password-requirements">
                 Maximum character limit: 1,000.
             </p>
-            <button type="submit" class="button-style">Create Chat</button>
+            <button type="submit" class="button-style">Create Message</button>
         </form>
     </main>
     <footer class="footer">
         <p>&copy; 2025 Message Drop | Designed with ❤️ by Satish Pandey.</p>
     </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            VANTA.FOG({
+                el: "body",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00
+            })
+        });
+    </script>
 </body>
 
 </html>

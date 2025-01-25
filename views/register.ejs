@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>register</title>
     <link rel="stylesheet" href="/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
 </head>
 
 <body>
     <header class="header">
-        <h1>Welcome to Drop<span style="color: #6200ea;">N</span>Read</h1>
+        <h1>Welcome to Drop<span style="color: #FF4500;">N</span>Read</h1>
     </header>
     <div class="form-container">
-        <h3 style="color: #6200ea; font-size: 1.5rem;">Create a New Account</h3>
+        <h3 style="color: #FF4500; font-size: 1.5rem;">Create a New Account</h3>
         <form action="/register" method="POST" class="chat-form">
             <input type="text" name="name" placeholder="Enter your full name" required>
             <input type="text" name="username" placeholder="Choose a username" required>
@@ -30,7 +32,7 @@
                     <input type="text" name="otp" placeholder="Enter the OTP" required>
                 </div>
             </div>
-            <p id="timer" class="password-requirements" style="color: #6200ea; font-size: 1rem; display:none;">Time
+            <p id="timer" class="password-requirements" style="color: #FF4500; font-size: 1rem; display:none;">Time
                 remaining: <span id="countdown"></span></p>
 
             <button type="submit" class="button-style" id="submitButton" disabled>Create Account</button>
@@ -152,7 +154,16 @@
                 }
             }, 1000);
         }
-
+    document.addEventListener("DOMContentLoaded", () => {
+        VANTA.FOG({
+            el: "body",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00
+        })
+    });
     </script>
 </body>
 

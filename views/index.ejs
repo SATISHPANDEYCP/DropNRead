@@ -5,12 +5,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DropNRead</title>
-    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <link rel="stylesheet" href="/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+    <!-- <script src="three.r134.min.js"></script>
+    <script src="vanta.fog.min.js"></script> -->
 </head>
 
 <body>
     <header class="header">
-        <h1>Drop<span style="color: #6200ea">N</span>Read</h1>
+        <button class="hamburger">☰</button>
+        <img src="/favicon.png">
         <div class="user-icon">
             <a href="/profile">
                 <div class="icon-circle">
@@ -24,56 +30,175 @@
             </span>
         </div>
     </header>
-    <main class="chat-container">
-        <% for (let chat of chats) { %>
+
+    <main class="dashboard">
+        <!-- Left-Side Menu -->
+        <aside class="menu hidden">
+            <a href="/chats/dashboard"><button class="menu-btn">Home</button></a>
+            <button id="show-sent" class="menu-btn">Show Sent Messages</button>
+            <button id="show-received" class="menu-btn">Show Received Messages</button>
+            <a href="/chats/new"><button class="menu-btn">Send a Message</button></a>
+            <a href="/reset-password"><button class="menu-btn">Reset Password</button></a>
+            <a href="/logout"><button class="menu-btn">Logout</button></a>
+        </aside>
+
+        <!-- Right-Side Content -->
+        <section id="content" class="content">
+            <h2>Welcome to DropNRead</h2>
+            <div id="typed-output"></div>
+
+            <!-- <p>Click a button on the left(for mobile click on the hamberger button) to see your messages or perform an action see your sent messages and to sent messages to change your password and log out and more things.</p> -->
+            <p class="fixed-unselectable">DropNRead</p>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2025 DropNRead | Designed with ❤️ by Satish Pandey.</p>
+    </footer>
+    <script>
+        // Typed text
+        var options = {
+            strings: [
+                "Click a button on the left (or tap the hamburger button on mobile) to perform various operations, such as sending new messages, reviewing messages you have sent, managing your account settings by changing your password, logging out of your account securely, and exploring additional features and functionalities available to enhance your overall experience."
+            ],
+            typeSpeed: 50, // Speed of typing in milliseconds
+            loop: false,   // Set true if you want the text to loop
+            showCursor: true, // Set false if you want to hide the blinking cursor
+            cursorChar: "|", // The character for the cursor
+        };
+        new Typed("#typed-output", options);
+
+
+
+        // Hamberger
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const menu = document.querySelector('.menu');
+
+            // Toggle the menu on hamburger click
+            hamburger.addEventListener('click', (e) => {
+                menu.classList.toggle('active');
+                menu.classList.toggle('hidden');
+                e.stopPropagation(); // Prevent the body click listener from firing when the hamburger is clicked
+            });
+
+            // Hide the menu when clicking anywhere else on the body
+            document.body.addEventListener('click', () => {
+                if (menu.classList.contains('active')) {
+                    menu.classList.remove('active');
+                    menu.classList.add('hidden');
+                }
+            });
+
+            // Prevent clicks inside the menu from hiding it
+            menu.addEventListener('click', (e) => e.stopPropagation());
+        });
+
+
+
+
+
+
+        // Add functionality for buttons
+        document.getElementById("show-sent").addEventListener("click", async () => {
+            const response = await fetch("/chats/sent");
+            const sentChats = await response.json();
+            displayChats(sentChats, "Sent Messages");
+        });
+
+        document.getElementById("show-received").addEventListener("click", async () => {
+            const response = await fetch("/chats/received");
+            const receivedChats = await response.json();
+            displayChats(receivedChats, "Received Messages");
+        });
+
+        function displayChats(chats, title) {
+            const content = document.getElementById("content");
+            content.innerHTML = `<h2>${title}</h2>`;
+            if (chats.length === 0) {
+                content.innerHTML += "<p>No messages to display.</p>";
+                return;
+            }
+            chats.forEach(chat => {
+
+                let editDeleteButtons = '';  // Placeholder for Edit/Delete buttons
+
+                // Only show Edit and Delete buttons if we are in the "Sent Messages" section
+                if (title === "Sent Messages") {
+                    editDeleteButtons = `
+                        <div class="two-btn">
+                            <form action="/chats/${chat._id}/edit" method="get">
+                                <button class="button-style">Edit</button>
+                            </form>
+                            <form method="POST" action="/chats/${chat._id}?_method=DELETE">
+                                <button class="button-style del-btn">Delete</button>
+                            </form>
+                        </div>
+                    `;
+                }
+
+                // Convert created_at to a Date object
+                const createdAtDate = new Date(chat.created_at);
+                const formattedTime = createdAtDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                const formattedDate = createdAtDate.toLocaleDateString('en-US', {
+                    weekday: 'short',
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                });
+
+                const chatHTML = `
             <div class="chat-box">
                 <div class="chat-info">
                     <p>
                         <strong>From:</strong>
-                        <%= chat.from.toUpperCase()%>
-                            (Username:<%=chat.username%>)
+                      ${chat.from.toUpperCase()}<br>(Username: ${chat.username})
+
                     </p>
                     <p>
                         <strong>To:</strong>
-                        <%= chat.to.toUpperCase() %> (<%= chat.dropdownValue%>)
+                        ${chat.to.toUpperCase()} <br> (${chat.dropdownValue})
                     </p>
                 </div>
                 <div class="chat-message">
-                    <div class="message-section">
-                        <h3>Message:</h3>
-                        <p>
-                            <%= chat.message %>
-                        </p>
+                    <div class="chat-message-chatShow">
+                       <h3>Message:</h3>
+                       <div class="message-section">
+                          <p>
+                              ${chat.message}
+                          </p>
+                        </div>
                     </div>
-                    <div class="two-btn">
-                        <form action="/chats/<%=chat._id%>/edit" method="get">
-                            <button class="button-style">Edit</button>
-                        </form>
-                        <form method="POST" action="/chats/<%= chat._id %>?_method=DELETE">
-                            <button class="button-style del-btn">Delete</button>
-                        </form>
-                    </div>
+                    ${editDeleteButtons}
                 </div>
                 <!-- 7.Date -->
                 <div class="Created-time">
                     <p>
                         Created At:<br />
-                        <%=chat.created_at.toString().split(" ")[4]%>
+                        ${formattedTime}
                     </p>
                     <p>
-                        <br /><%=chat.created_at.toString().split(" ").slice(0,4).join(" ")%>
+                        <br />${formattedDate}
                     </p>
                 </div>
             </div>
-            <% } %>
-        </main>
-        <footer class=" footer">
-                            <div class="footer-btn">
-                                <a href="/logout"><button class="button-style">Logout</button></a>
-                                <a href="/chats/new"><button class="button-style">New Chat</button></a>
-                            </div>
-                            <p>&copy; 2025 message drop | Designed with ❤️ by Satish Pandey.</p>
-                            </footer>
+                    `;
+                content.innerHTML += chatHTML;
+            });
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            VANTA.FOG({
+                el: "body",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00
+            })
+        });
+
+    </script>
+
+
 </body>
 
 </html>

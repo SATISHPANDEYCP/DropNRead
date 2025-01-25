@@ -6,7 +6,6 @@
 
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #121212;
   color: #f1f1f1;
   display: flex;
   align-items: center;
@@ -18,7 +17,7 @@ body {
 .container {
   text-align: center;
   padding: 30px;
-  background-color: #1e1e1e;
+  background-color: rgba(22, 22, 22, 0.623);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   animation: fadeIn 1s ease-in-out;
@@ -28,7 +27,7 @@ body {
   position: relative;
   width: 150px;
   height: 150px;
-  background-color: #6200ea;
+  background-color: #FF7300;
   border-radius: 50%;
   margin: 0 auto 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -95,7 +94,7 @@ body {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #6200ea;
+  color: #FF4500;
 }
 
 .sub-message {
@@ -107,7 +106,7 @@ body {
 .go-back-btn {
   display: inline-block;
   padding: 12px 24px;
-  background-color: #6200ea;
+  background-color: #FF4500;
   color: #f1f1f1;
   text-decoration: none;
   font-size: 16px;
@@ -120,8 +119,9 @@ body {
 }
 
 .go-back-btn:hover {
-  background-color: #3700b3;
+  background-color: #FF7300;
   transform: scale(1.05);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6);
 }
 
 @keyframes fadeIn {
