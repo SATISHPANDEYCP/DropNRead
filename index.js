@@ -48,7 +48,7 @@ app.use("/", authRoutes); // Handle authentication-related routes
 // Redirect to login or chats based on session
 app.get("/", (req, res) => {
   if (req.session.user) {
-    return res.redirect("/chats");
+    return res.redirect("/chats/dashboard");
   }
   res.render("login");
 });
