@@ -9,7 +9,7 @@ body {
     align-items: center;
     justify-content: center;
     overflow-y: auto;
-    /*overflow-x: hidden;*/
+    overflow-x: hidden;
 }
 
 .header {
@@ -42,10 +42,8 @@ body {
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
-    max-width: 1000px;
-    width: 100%;
-    padding: 20px;
-}
+    width: 90%;
+} 
 
 .intro {
     background-color: rgba(22, 22, 22, 0.555);
@@ -154,7 +152,7 @@ body {
     background-color: rgba(22, 22, 22, 0.555);
     text-align: center;
     color: #a1a1a1;
-    padding: 20px;
+    padding: 20px 0 20px 0;
     margin-top: 40px;
     width: 100%;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.6);
