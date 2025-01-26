@@ -27,7 +27,6 @@ const chatSchema = new mongoose.Schema({
     message: {
         type: String,
         required: [true, 'Message is required.'],
-        maxLength: [1000, 'Message cannot exceed 1,000 characters.']
     },
     created_at: {
         type: Date,
