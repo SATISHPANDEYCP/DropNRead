@@ -235,6 +235,10 @@ textarea::-webkit-scrollbar {
         height: auto;
     }
 
+    .button-style {
+        margin-bottom: 10px;
+    }
+
     .two-btn {
         display: flex;
         justify-content: space-between;
