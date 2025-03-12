@@ -1,37 +1,50 @@
-/* General Styles */
+:root {
+    --background-color: linear-gradient(to bottom left, #f6c798, #ffdfda, #f7bdd8, #b5c6f2);
+    --primary-color: #cf83a7;
+    --primary-hover-color: #ca9bb1;
+    --header-footer-color: rgba(22, 22, 22, 0.555);
+    --msg-box-color: linear-gradient(to bottom left, #f6c798, #f7bdd8, #b5c6f2);
+    --text-color: #f1f1f1;
+    --hover-shadow-color: rgba(0, 0, 0, 0.6);
+    --border-color: #414141;
+    --highlight-color: #888;
+}
+
 body {
+    background: var(--background-color);
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     height: 100vh;
-    color: #f1f1f1;
+    color: var(--text-color);
 }
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    min-height:max-content;
+    min-height: max-content;
     display: flex;
     flex-direction: column;
-    color: #f1f1f1;
+    color: var(--text-color);
 }
 
 main {
     flex: 1;
 }
+
 header {
-    background-color: rgba(22, 22, 22, 0.555);
-    color: white;
+    background-color: var(--header-footer-color);
+    color: var(--text-color);
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
-    /* border-bottom: 2px solid #3700b3; */
 }
 
 header nav a {
-    color: white;
+    color: var(--text-color);
     margin-left: 20px;
     text-decoration: none;
     font-weight: bold;
@@ -41,12 +54,11 @@ header nav a:hover {
     text-decoration: underline;
 }
 
-/* Profile Section */
 .profile-container {
-    color: #f1f1f1;
+    color: var(--text-color);
     max-width: 900px;
     margin: 50px auto;
-    background-color: rgba(22, 22, 22, 0.555);
+    background-color: var(--header-footer-color);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
     padding: 30px;
     border-radius: 12px;
@@ -68,8 +80,8 @@ header nav a:hover {
 .profile-avatar {
     width: 80px;
     height: 80px;
-    background-color: #FF4500;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--text-color);
     font-size: 2rem;
     display: flex;
     align-items: center;
@@ -81,18 +93,18 @@ header nav a:hover {
 .profile-name h2 {
     margin: 0;
     font-size: 1.8rem;
-    color: #FF4500;
+    color: var(--primary-color);
 }
 
 .profile-name p {
     margin: 5px 0 0;
     font-size: 1rem;
-    color: #f1f1f1;
+    color: var(--text-color);
     opacity: 0.8;
 }
 
 .profile-info {
-    background-color: rgba(22, 22, 22, 0.623);
+    background-color: var(--header-footer-color);
     padding: 20px;
     border-radius: 8px;
     font-size: 1rem;
@@ -102,8 +114,8 @@ header nav a:hover {
 .reset-password-btn {
     display: inline-block;
     padding: 12px 25px;
-    background-color: #FF4500;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--text-color);
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
@@ -112,7 +124,7 @@ header nav a:hover {
 }
 
 .reset-password-btn:hover {
-    background-color: #FF7300;
+    background-color: var(--primary-hover-color);
     transform: scale(1.02);
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6);
 }
@@ -121,17 +133,15 @@ header nav a:hover {
     background-color: red;
 }
 
-/* Footer */
 footer {
     text-align: center;
     padding: 20px;
     background-color: rgba(22, 22, 22, 0.555);
-    color: white;
+    color: var(--text-color);
     margin-top: 20px;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.6);
 }
 
-/* Responsive Styles */
 @media (max-width: 600px) {
     header nav {
         display: grid;
@@ -142,7 +152,7 @@ footer {
     }
 
     header nav a {
-        background-color: #FF4500;
+        background-color: var(--primary-color);
         border-radius: 5px;
         padding: 5px;
         margin: 5px;
@@ -152,11 +162,12 @@ footer {
         transition: background-color 0.3s ease, transform 0.2s ease;
 
     }
+
     header a:hover {
-        background-color: #FF7300;
+        background-color: var(--primary-hover-color);
         transform: scale(1.02);
         text-decoration: none;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6);
     }
 
     header nav a:hover {

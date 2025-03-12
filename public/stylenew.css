@@ -1,0 +1,118 @@
+/* General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(to bottom left, #f6c798, #ffdfda, #f7bdd8, #b5c6f2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    font-size: 2rem;
+    font-weight: 600;
+    border-radius: 12px;
+}
+
+.highlight {
+    color: #cf83a7;
+}
+
+/* Form Container */
+.form-container {
+    width: 100%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.form-card {
+    padding: 20px;
+}
+
+.form-title {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #cf83a7;
+    margin-bottom: 15px;
+}
+
+/* Form Inputs */
+.chat-form label {
+    display: block;
+    font-weight: 600;
+    margin: 10px 0 5px;
+}
+
+.chat-form input,
+.chat-form select,
+.chat-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.chat-form textarea {
+    resize: none;
+}
+
+.chat-form select {
+    background-color: white;
+}
+
+/* Info Text */
+.info-text {
+    font-size: 0.85rem;
+    color: #555;
+    text-align: justify;
+}
+
+/* Submit Button */
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(to right, #cf83a7, #b589d6);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background: linear-gradient(to right, #b589d6, #cf83a7);
+}
+
+/* Footer */
+.footer {
+    margin-top: 20px;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+    color: white;
+    background: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    border-radius: 8px;
+}

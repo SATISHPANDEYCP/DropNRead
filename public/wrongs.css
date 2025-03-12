@@ -1,3 +1,15 @@
+:root {
+  --background-color: linear-gradient(to bottom left, #f6c798, #ffdfda, #f7bdd8, #b5c6f2);
+  --primary-color: #cf83a7;
+  --primary-hover-color: #ca9bb1;
+  --header-footer-color: rgba(22, 22, 22, 0.555);
+  --msg-box-color: linear-gradient(to bottom left, #f6c798, #f7bdd8, #b5c6f2);
+  --text-color: #f1f1f1;
+  --hover-shadow-color: rgba(0, 0, 0, 0.6);
+  --border-color: #414141;
+  --highlight-color: #888;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,8 +17,9 @@
 }
 
 body {
+  background: var(--background-color);
   font-family: 'Arial', sans-serif;
-  color: #f1f1f1;
+  color: var(--text-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,7 +30,7 @@ body {
 .container {
   text-align: center;
   padding: 30px;
-  background-color: rgba(22, 22, 22, 0.623);
+  background-color: var(--header-footer-color);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   animation: fadeIn 1s ease-in-out;
@@ -27,7 +40,7 @@ body {
   position: relative;
   width: 150px;
   height: 150px;
-  background-color: #FF7300;
+  background-color: var(--primary-color);
   border-radius: 50%;
   margin: 0 auto 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -38,7 +51,7 @@ body {
   top: 40%;
   width: 20px;
   height: 20px;
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   border-radius: 50%;
   transition: 1s;
 }
@@ -50,7 +63,7 @@ body {
   left: 25%;
   width: 10px;
   height: 10px;
-  background-color: white;
+  background-color: var(--text-color);
   border-radius: 50%;
 }
 
@@ -63,7 +76,6 @@ body {
 }
 
 @keyframes blink {
-
   0%,
   95% {
     transform: scaleY(1);
@@ -94,20 +106,20 @@ body {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #FF4500;
+  color: var(--primary-color);
 }
 
 .sub-message {
   font-size: 18px;
-  color: #a1a1a1;
+  color: var(--text-color);
   margin-bottom: 20px;
 }
 
 .go-back-btn {
   display: inline-block;
   padding: 12px 24px;
-  background-color: #FF4500;
-  color: #f1f1f1;
+  background-color: var(--primary-color);
+  color: var(--text-color);
   text-decoration: none;
   font-size: 16px;
   font-weight: bold;
@@ -119,9 +131,9 @@ body {
 }
 
 .go-back-btn:hover {
-  background-color: #FF7300;
+  background-color: var(--primary-hover-color);
   transform: scale(1.05);
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6);
 }
 
 @keyframes fadeIn {

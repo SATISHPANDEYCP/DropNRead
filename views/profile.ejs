@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DropNRead Profile</title>
     <link rel="stylesheet" href="/profile.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
 </head>
-
 <body>
     <header>
-        <h1>Drop<span style="color: #FF4500;">N</span>Read Profile</h1>
+        <h1>Drop<span style="color: #cf83a7;">N</span>Read Profile</h1>
         <nav>
             <a href="/chats/dashboard">Home</a>
             <a href="/logout">Logout</a>
         </nav>
     </header>
-
     <main class="profile-container">
         <div class="profile-header">
             <div class="profile-avatar">
-                <!-- Dynamically display the first letter of the user's name -->
                 <span class="profile-initial"><%= currentUser.name[0].toUpperCase() %></span>
             </div>
             <div class="profile-name">
@@ -33,35 +27,18 @@
                 </p>
             </div>
         </div>
-
         <div class="profile-info">
             <p><strong>Email:</strong>
                 <%= currentUser.email %>
             </p>
         </div>
-
         <div class="btn-container">
             <a href="/reset-password" class="reset-password-btn">Change Password</a>
             <a href="/deleteUser" class="reset-password-btn del-btn">Delete Account</a>
         </div>
     </main>
-
     <footer>
-        <p>© 2025 Message Drop | Designed with ❤️ by Satish Pandey.</p>
+        <p>© 2025 Message Drop | Designed with 🩷 by Satish Pandey.</p>
     </footer>
-    <script>
-         document.addEventListener("DOMContentLoaded", () => {
-                VANTA.FOG({
-                    el: "body",
-                    mouseControls: true,
-                    touchControls: true,
-                    gyroControls: false,
-                    minHeight: 200.00,
-                    minWidth: 200.00
-                })
-            });
-
-    </script>
 </body>
-
 </html>

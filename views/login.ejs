@@ -1,25 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DropNRead - Login</title>
     <link rel="stylesheet" href="/login.css">
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script> <!-- Include the Typed.js library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 </head>
-
 <body>
-
     <header class="header">
         <img src="/favicon.png">
-        <h1>Drop<span style="color: #FF4500;">N</span>Read</h1>
+        <h1>Drop<span style="color: #cf83a7;">N</span>Read</h1>
     </header>
     <main class="form-container">
         <div class="intro">
-            <h3>Welcome to Drop<span style="color: #333;">N</span>Read!</h3>
+            <h3>Welcome to Drop<span style="color: #f1f1f1;">N</span>Read!</h3>
             <p id="typed-text"></p>
         </div>
         <div class="login-form-container">
@@ -34,7 +29,7 @@
         </div>
     </main>
     <footer class="footer">
-        <p>&copy; 2025 Message Drop | Designed with ❤️ by Satish Pandey.</p>
+        <p>&copy; 2025 DropNRead | Designed with 🩷 by Satish Pandey.</p>
     </footer>
     <script>
         var options = {
@@ -44,25 +39,12 @@
                 "With DropNRead, sending and receiving messages is as simple as logging in and entering a name, username, or email. Drop messages anytime, anywhere, and manage them with ease—edit or delete messages whenever needed.",
                 "Enjoy seamless and secure messaging with DropNRead! Our platform ensures your messages remain private and are delivered to the right person—identified by name, username, or email—every time. Join now to experience a simple and engaging way to connect!"
             ],
-            typeSpeed: 50,  // Speed of typing
-            backSpeed: 30,  // Speed of deleting text
-            backDelay: 1000,  // Delay before deleting text
-            loop: true,  // Keep typing and deleting indefinitely
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 1000,
+            loop: true, 
         };
-
         var typed = new Typed("#typed-text", options);  // Apply typing effect to the paragraph with id="typed-text"
-        document.addEventListener("DOMContentLoaded", () => {
-            VANTA.FOG({
-                el: "body",
-                mouseControls: true,
-                touchControls: true,
-                gyroControls: false,
-                minHeight: 200.00,
-                minWidth: 200.00
-            })
-        });
     </script>
-
 </body>
-
 </html>

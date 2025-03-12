@@ -1,7 +1,7 @@
 :root {
-    /* --background-color: #121212; */
-    --primary-color: #FF4500;
-    --primary-hover-color: #FF7300;
+    --background-color: linear-gradient(to bottom left, #f6c798, #ffdfda, #f7bdd8, #b5c6f2);
+    --primary-color: #cf83a7;
+    --primary-hover-color: #ca9bb1;
     --header-footer-color: rgba(22, 22, 22, 0.555);
     --text-color: #f1f1f1;
     --hover-shadow-color: rgba(0, 0, 0, 0.6);
@@ -12,7 +12,7 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    /* background-color: var(--background-color); */
+    background: var(--background-color);
     color: var(--text-color);
     display: flex;
     flex-direction: column;
@@ -35,7 +35,7 @@ body {
 .header h1 {
     margin: 0;
     font-size: 24px;
-    color: var(--border-color);
+    color: var(--text-color);
     font-size: 2rem;
 }
 
@@ -82,10 +82,12 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
     transition: transform 0.2s ease-in-out, box-shadow 0.3s;
 }
+
 .form-container:hover {
     transform: scale(1.01);
     box-shadow: 6px 6px 15px var(--hover-shadow-color);
 }
+
 .form-container h3 {
     margin-bottom: 20px;
     color: var(--text-color);
@@ -129,7 +131,7 @@ body {
 .footer {
     background-color: var(--header-footer-color);
     text-align: center;
-    color: var(--highlight-color);
+    color: var(--text-color);
     padding: 1.5rem;
     margin-top: auto;
     box-shadow: 0 -2px 5px var(--hover-shadow-color);
@@ -141,7 +143,7 @@ textarea::-webkit-scrollbar {
 
 .options-form {
     text-align: center;
-    color: var(--highlight-color);
+    color: var(--text-color);
     margin-top: 20px;
 }
 
@@ -178,6 +180,7 @@ textarea::-webkit-scrollbar {
     padding: 10px;
     border-radius: 5px;
 }
+
 #dropdownValue:focus {
     border-color: var(--text-color);
 }
@@ -192,8 +195,6 @@ textarea::-webkit-scrollbar {
     text-align: left;
 }
 
-
-/* For tablets (portrait and landscape) */
 @media (max-width: 768px) {
     .header h1 {
         font-size: 1.8rem;
@@ -261,7 +262,6 @@ textarea::-webkit-scrollbar {
     }
 }
 
-/* For mobile phones (small screens) */
 @media (max-width: 480px) {
     .header h1 {
         font-size: 1.4rem;

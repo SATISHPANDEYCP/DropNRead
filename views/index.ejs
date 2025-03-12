@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DropNRead</title>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <link rel="stylesheet" href="/index.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
-    <!-- <script src="three.r134.min.js"></script>
-    <script src="vanta.fog.min.js"></script> -->
 </head>
-
 <body>
     <header class="header">
         <button class="hamburger">☰</button>
-        <img src="/favicon.png">
+        <a href="dashboard">
+            <img src="/favicon.png">
+        </a>
         <div class="user-icon">
             <a href="/profile">
                 <div class="icon-circle">
@@ -30,7 +26,6 @@
             </span>
         </div>
     </header>
-
     <main class="dashboard">
         <!-- Left-Side Menu -->
         <aside class="menu hidden">
@@ -41,18 +36,15 @@
             <a href="/reset-password"><button class="menu-btn">Reset Password</button></a>
             <a href="/logout"><button class="menu-btn">Logout</button></a>
         </aside>
-
         <!-- Right-Side Content -->
         <section id="content" class="content">
             <h2>Welcome to DropNRead</h2>
             <div id="typed-output"></div>
-
-            <!-- <p>Click a button on the left(for mobile click on the hamberger button) to see your messages or perform an action see your sent messages and to sent messages to change your password and log out and more things.</p> -->
             <p class="fixed-unselectable">DropNRead</p>
         </section>
     </main>
     <footer class="footer">
-        <p>&copy; 2025 DropNRead | Designed with ❤️ by Satish Pandey.</p>
+        <p>&copy; 2025 DropNRead | Designed with 🩷 by Satish Pandey.</p>
     </footer>
     <script>
         // Typed text
@@ -60,27 +52,22 @@
             strings: [
                 "Click a button on the left (or tap the hamburger button on mobile) to perform various operations, such as sending new messages, reviewing messages you have sent, managing your account settings by changing your password, logging out of your account securely, and exploring additional features and functionalities available to enhance your overall experience."
             ],
-            typeSpeed: 50, // Speed of typing in milliseconds
-            loop: false,   // Set true if you want the text to loop
-            showCursor: true, // Set false if you want to hide the blinking cursor
-            cursorChar: "|", // The character for the cursor
+            typeSpeed: 50,
+            loop: false,
+            showCursor: true,
+            cursorChar: "|",
         };
         new Typed("#typed-output", options);
-
-
-
         // Hamberger
         document.addEventListener('DOMContentLoaded', () => {
             const hamburger = document.querySelector('.hamburger');
             const menu = document.querySelector('.menu');
-
             // Toggle the menu on hamburger click
             hamburger.addEventListener('click', (e) => {
                 menu.classList.toggle('active');
                 menu.classList.toggle('hidden');
                 e.stopPropagation(); // Prevent the body click listener from firing when the hamburger is clicked
             });
-
             // Hide the menu when clicking anywhere else on the body
             document.body.addEventListener('click', () => {
                 if (menu.classList.contains('active')) {
@@ -88,29 +75,20 @@
                     menu.classList.add('hidden');
                 }
             });
-
             // Prevent clicks inside the menu from hiding it
             menu.addEventListener('click', (e) => e.stopPropagation());
         });
-
-
-
-
-
-
         // Add functionality for buttons
         document.getElementById("show-sent").addEventListener("click", async () => {
             const response = await fetch("/chats/sent");
             const sentChats = await response.json();
             displayChats(sentChats, "Sent Messages");
         });
-
         document.getElementById("show-received").addEventListener("click", async () => {
             const response = await fetch("/chats/received");
             const receivedChats = await response.json();
             displayChats(receivedChats, "Received Messages");
         });
-
         function displayChats(chats, title) {
             const content = document.getElementById("content");
             content.innerHTML = `<h2>${title}</h2>`;
@@ -119,9 +97,7 @@
                 return;
             }
             chats.forEach(chat => {
-
                 let editDeleteButtons = '';  // Placeholder for Edit/Delete buttons
-
                 // Only show Edit and Delete buttons if we are in the "Sent Messages" section
                 if (title === "Sent Messages") {
                     editDeleteButtons = `
@@ -135,7 +111,6 @@
                         </div>
                     `;
                 }
-
                 // Convert created_at to a Date object
                 const createdAtDate = new Date(chat.created_at);
                 const formattedTime = createdAtDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -145,14 +120,12 @@
                     month: 'short',
                     day: 'numeric',
                 });
-
                 const chatHTML = `
             <div class="chat-box">
                 <div class="chat-info">
                     <p>
                         <strong>From:</strong>
                       ${chat.from.toUpperCase()}<br>(Username: ${chat.username})
-
                     </p>
                     <p>
                         <strong>To:</strong>
@@ -185,20 +158,6 @@
                 content.innerHTML += chatHTML;
             });
         }
-        document.addEventListener("DOMContentLoaded", () => {
-            VANTA.FOG({
-                el: "body",
-                mouseControls: true,
-                touchControls: true,
-                gyroControls: false,
-                minHeight: 200.00,
-                minWidth: 200.00
-            })
-        });
-
     </script>
-
-
 </body>
-
 </html>
