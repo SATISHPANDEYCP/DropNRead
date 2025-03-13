@@ -298,7 +298,7 @@ body {
 .footer {
     background: var(--header-footer-color);
     text-align: center;
-    color: var(--highlight-color);
+    color: var(--text-color);
     padding: 1.5rem;
     margin-top: auto;
     box-shadow: 0 -2px 50px var(--hover-shadow-color);
