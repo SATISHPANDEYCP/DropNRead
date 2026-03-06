@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const router = express.Router();
 const User = require("../models/user");
 const Chat = require("../models/chat");
-const nodemailer = require("nodemailer");
+const { sendEmail } = require("../mailer");
 const { body, validationResult } = require("express-validator");
 
 
@@ -197,19 +197,11 @@ router.post("/send-otp-reg", async (req, res) => {
         const hashedOtp = await bcrypt.hash(otpCode, 10);
         // Store hashed OTP and expiry in the temporary store
         otpStore[email] = { hashedOtp, otpExpiry };
-        // Send the plain OTP via email (using nodemailer)
-        const transporter = nodemailer.createTransport({
-            service: "Gmail",
-            auth: {
-                user: process.env.EMAIL,
-                pass: process.env.EMAIL_PASS,
-            },
-        });
-        await transporter.sendMail({
-            from: `"DropNRead Support" <${process.env.EMAIL}>`,
+        // Send the plain OTP via email (using Gmail API)
+        await sendEmail({
             to: email,
             subject: "Your OTP for Registration",
-            text: `Your OTP is ${otpCode}. It is valid for 5 minutes.`,
+            text: `Your OTP is ${otpCode}. It is valid for 5 minutes.`
         });
         res.status(200).json({ msg: "OTP sent successfully. Please check your email." });
     } catch (error) {
@@ -345,18 +337,10 @@ router.post("/send-otp", async (req, res) => {
         // Hash the OTP before saving
         const hashedOtp = await bcrypt.hash(otpCode, 10);
         otpStoreCurrent[email] = { hashedOtp, otpExpiry };
-        const transporter = nodemailer.createTransport({
-            service: "Gmail",
-            auth: {
-                user: process.env.EMAIL,
-                pass: process.env.EMAIL_PASS,
-            },
-        });
-        await transporter.sendMail({
-            from: `"DropNRead Support" <${process.env.EMAIL}>`,
+        await sendEmail({
             to: email,
             subject: "Your OTP for Password Reset",
-            text: `Your OTP is ${otpCode}. It is valid for 5 minutes.`,
+            text: `Your OTP is ${otpCode}. It is valid for 5 minutes.`
         });
         res.status(200).json({ msg: "OTP sent successfully. Please check your email." });
     } catch (error) {
